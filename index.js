@@ -5,7 +5,6 @@ var File = require('vinyl')
 var PluginError = require('plugin-error')
 var path = require('path')
 var applySourceMap = require('vinyl-sourcemaps-apply')
-var camelCase = require('lodash.camelcase')
 
 var PLUGIN_NAME = 'gulp-better-rollup'
 
@@ -72,7 +71,7 @@ class GulpRollup extends Transform {
 
 		var originalCwd = file.cwd
 		var originalPath = file.path
-		var moduleName = camelCase(path.basename(file.path, path.extname(file.path)))
+		var moduleName = path.basename(file.path, path.extname(file.path))
 
 		function generateAndApplyBundle(bundle, outputOptions, targetFile) {
 			// Sugaring the API by copying convinience objects and properties from inputOptions
